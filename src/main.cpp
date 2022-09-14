@@ -11,7 +11,7 @@ int distanceLevel_I = 100;
 int distanceLevel_II = 60;
 int distanceLevel_III = 20;
 
-//Pins
+//Pins for paperbot
 int const redLEDPin = 1;
 int const yellowLEDPin = 2;
 int const greenLEDPin = 3;
