@@ -1,51 +1,47 @@
 #include <Arduino.h>
+#include "arm.cpp"
+#include "ir.cpp"
+#include "robot.cpp"
 
-class Arm {
-  public:
-    Arm() {
-      // pins n shit
-    }
-    void pickup() {
-      //picks up the cup
-    }
-    void putdown() {
-      // puts down the cup
-    }
-};
+void lvl1(Robot rob)
+{
+  // tunable parameters
+  int speed = 10;
+  int distance = 10;
 
-class Ir {
-  public:
-    Ir() {
-      // pins n shit
-    }
-};
-
-class Motor {
-  public:
-    Motor() {
-    //init motor
+  rob.follow_line(speed);
+  rob.motor.turn_right(speed);
+  if (rob.ultrasonic.read_distance() > distance)
+  {
+    rob.motor.turn_left(speed);
+    rob.motor.turn_left(speed);
+    rob.follow_line(speed);
   }
+  rob.drive_to_cup(speed);
+  rob.arm.pickup();
+  rob.motor.turn_right(speed);
+  rob.motor.turn_right(speed);
+  rob.follow_line(speed);
+  rob.follow_line(speed);
+  rob.motor.turn_right(speed);
+  rob.follow_line(speed);
 };
+void lvl2()
+{
+}
+void lvl3()
+{
+}
+void lvl4()
+{
+}
 
-class Robot {
-  public:
-    //public info
-    Arm arm;
-    Ir ir;
-    Motor motor;
-    Robot() {
-      //initialize the Robot with Arm n shit.
-    }
-  private:
-    //private info
-
-};
-
-void setup() {
+void setup()
+{
   Robot rob;
-  
+  lvl1(rob);
+  lvl2();
+  lvl3();
+  lvl4();
 };
-
-void loop() {
-
-};
+void loop(){};
