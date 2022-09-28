@@ -19,9 +19,11 @@ public:
   void pickup()
   {
     // picks up the cup
+    // Andrea's code goes here
   }
   void putdown()
   {
     // puts down the cup
+    // Andrea's code goes here
   }
 };
