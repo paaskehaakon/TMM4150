@@ -8,13 +8,17 @@ public:
     int digital_left_pin;
     int digital_right_pin;
 
-    Motor(int pin1, int pin2, int pin3, int pin4)
+    // tunable parameters
+    int speed;
+
+    Motor(int pin1, int pin2, int pin3, int pin4, int speed)
     {
         // pins for motor
         this->analog_left_pin = pin1;
         this->analog_right_pin = pin2;
         this->digital_left_pin = pin3;
         this->digital_right_pin = pin4;
+        this->speed = speed;
 
         // attach motor
         pinMode(analog_left_pin, OUTPUT);
@@ -23,7 +27,7 @@ public:
         pinMode(digital_right_pin, OUTPUT);
     };
 
-    void drive(int speed)
+    void drive()
     {
         digitalWrite(digital_left_pin, HIGH);
         digitalWrite(digital_right_pin, HIGH);
@@ -32,7 +36,7 @@ public:
         analogWrite(analog_right_pin, speed);
     };
 
-    void turn_left(int speed)
+    void turn_left()
     {
         digitalWrite(digital_left_pin, HIGH);
         digitalWrite(digital_right_pin, LOW);
@@ -40,7 +44,7 @@ public:
         analogWrite(analog_left_pin, speed);
         analogWrite(analog_right_pin, speed);
     }
-    void turn_right(int speed)
+    void turn_right()
     {
         digitalWrite(digital_left_pin, LOW);
         digitalWrite(digital_right_pin, HIGH);

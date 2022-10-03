@@ -5,26 +5,22 @@
 
 void lvl1(Robot rob)
 {
-  // tunable parameters
-  int speed = 10;
-  int distance = 10;
 
-  rob.follow_line(speed);
-  rob.motor.turn_right(speed);
-  if (rob.ultrasonic.read_distance() > distance)
+  rob.follow_line();                                            // follows line until crossroads
+  rob.motor.turn_right();                                       // turns one way to look for the cup
+  if (rob.ultrasonic.read_distance() > rob.ultrasonic.distance) // if the cup is not there. turn the other way.
   {
-    rob.motor.turn_left(speed);
-    rob.motor.turn_left(speed);
-    rob.follow_line(speed);
+    rob.motor.turn_left(); // dont think this will work. need a way for the robot to turn 180 deg around.
+    rob.motor.turn_left();
+    rob.follow_line();
   }
-  rob.drive_to_cup(speed);
-  rob.arm.pickup();
-  rob.motor.turn_right(speed);
-  rob.motor.turn_right(speed);
-  rob.follow_line(speed);
-  rob.follow_line(speed);
-  rob.motor.turn_right(speed);
-  rob.follow_line(speed);
+  rob.drive_to_cup();
+  rob.motor.turn_right();
+  rob.motor.turn_right();
+  rob.follow_line();
+  rob.follow_line();
+  rob.motor.turn_right();
+  rob.follow_line();
 };
 void lvl2()
 {

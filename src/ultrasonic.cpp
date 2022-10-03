@@ -3,19 +3,35 @@
 class Ultrasonic
 {
 public:
-    int pin;
+    int in;
+    int out;
     int duration;
     int distance;
-    Ultrasonic(int pin)
+
+    // tunable parameters
+    int max_distance = 0;
+
+    Ultrasonic(int in, int out)
     {
-        this->pin = pin;
-        pinMode(pin, INPUT);
+        this->in = in;
+        this->out = out;
+        pinMode(in, INPUT);
+        pinMode(out, OUTPUT);
     }
 
     int read_distance()
     {
-        duration = pulseIn(pin, HIGH);   // Reads the echoPin, returns the sound wave travel time in microseconds.
-        distance = duration * 0.034 / 2; // Calculating the distance : speed of sound wave divided by 2 (go and back).
+        // for clearing trigpin condition
+        digitalWrite(out, LOW);
+        delayMicroseconds(2);
+        digitalWrite(out, HIGH);
+        delayMicroseconds(10);
+        digitalWrite(out, LOW);
+
+        // calculation the distance
+        duration = pulseIn(in, HIGH);
+        distance = duration * 0.034 / 2;
+        delay(100);
         return distance;
-    }
+    };
 };
