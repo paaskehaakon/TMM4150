@@ -1,4 +1,4 @@
-
+#include <Arduino.h>
 class Motor
 {
 public:
@@ -51,5 +51,9 @@ public:
 
         analogWrite(analog_left_pin, speed);
         analogWrite(analog_right_pin, speed);
+    }
+    void turn_around()
+    {
+        // TODO
     }
 };
