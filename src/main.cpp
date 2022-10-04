@@ -15,12 +15,24 @@ void lvl2(Robot rob)
   rob.follow_line();
 }
 
-void lvl3()
+void lvl3(Robot rob)
 {
+  rob.motor.turn("left", 90);
+  rob.follow_line();
+  rob.motor.drive(); // first obstacle
+  delay(500);        // power through to get over the bump
+  rob.follow_line();
+  rob.motor.drive(); // second obstacle
+  delay(500);        // power through to get over the bump
+  rob.follow_line(); // get over the sand pit. DONT KNOW IF THIS WORKS
 }
 
-void lvl4()
+void lvl4(Robot rob)
 {
+  rob.motor.turn("left", 90);
+  rob.follow_line();
+  rob.follow_line();
+  rob.follow_line();
 }
 
 void setup()
@@ -28,8 +40,8 @@ void setup()
   Robot rob;
   lvl1(rob);
   lvl2(rob);
-  lvl3();
-  lvl4();
+  lvl3(rob);
+  lvl4(rob);
 
   // victory spin
   while (true)
@@ -37,6 +49,7 @@ void setup()
     rob.motor.turn_left();
   }
 };
-void loop(){
-
+void loop()
+{
+  delay(1000);
 };

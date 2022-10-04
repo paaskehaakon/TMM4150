@@ -50,7 +50,7 @@ public:
     {
         // finds and picks the cup up
         int cup_position;
-        motor.turn_right();
+        motor.turn("right", 90);
         if (ultrasonic.read_distance() > ultrasonic.max_distance)
         {
             cup_position = 1;
@@ -59,28 +59,36 @@ public:
         else
         {
             cup_position = 0;
-            motor.turn_around();
+            motor.turn("right", 180);
             follow_line();
         }
         arm.grab();
 
         // places the cup on the oposite side
-        motor.turn_around();
+        motor.turn("right", 180);
         follow_line();
         follow_line();
         arm.leave();
 
         // returns to track
-        motor.turn_around();
+        motor.turn("right", 180);
         follow_line();
         if (cup_position == 0)
         {
-            motor.turn_left();
+            motor.turn("left", 90);
         }
         else
         {
-            motor.turn_right();
+            motor.turn("right", 90);
         }
         follow_line();
+    }
+    void drive_to_search()
+    {
+        motor.drive();
+        delay(1000); // Delay to get to the middle of the course
+    }
+    void search()
+    {
     }
 };

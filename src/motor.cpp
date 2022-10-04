@@ -52,14 +52,33 @@ public:
         analogWrite(analog_left_pin, speed);
         analogWrite(analog_right_pin, speed);
     }
-    void turn_around()
+    void turn(String dir, int deg)
     {
-        digitalWrite(digital_left_pin, LOW);
-        digitalWrite(digital_right_pin, HIGH);
+        if (dir == "left")
+        {
+            digitalWrite(digital_left_pin, LOW);
+            digitalWrite(digital_right_pin, HIGH);
 
-        analogWrite(analog_left_pin, speed);
-        analogWrite(analog_right_pin, speed);
+            analogWrite(analog_left_pin, speed);
+            analogWrite(analog_right_pin, speed);
+        }
+        else
+        {
+            digitalWrite(digital_left_pin, HIGH);
+            digitalWrite(digital_right_pin, LOW);
 
-        delay(3000); // time it takes to spin 180 degrees
+            analogWrite(analog_left_pin, speed);
+            analogWrite(analog_right_pin, speed);
+        }
+        if (deg == 180)
+        {
+            delay(2000); // time it takes to spin 180 degrees
+        }
+        else
+        {
+            delay(1000);
+        }
+        analogWrite(analog_left_pin, 0);
+        analogWrite(analog_right_pin, 0);
     }
 };
