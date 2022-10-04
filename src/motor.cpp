@@ -54,6 +54,12 @@ public:
     }
     void turn_around()
     {
-        // TODO
+        digitalWrite(digital_left_pin, LOW);
+        digitalWrite(digital_right_pin, HIGH);
+
+        analogWrite(analog_left_pin, speed);
+        analogWrite(analog_right_pin, speed);
+
+        delay(3000); // time it takes to spin 180 degrees
     }
 };

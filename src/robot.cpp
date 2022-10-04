@@ -44,7 +44,7 @@ public:
                 break;
             }
         }
-    }
+    };
 
     void cup_challenge()
     {
@@ -82,9 +82,5 @@ public:
             motor.turn_right();
         }
         follow_line();
-    }
-
-    void place_cup()
-    {
     }
 };
