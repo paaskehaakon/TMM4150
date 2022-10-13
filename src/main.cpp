@@ -1,7 +1,8 @@
 #include <Arduino.h>
-#include "arm.cpp"
-#include "ir.cpp"
-#include "robot.cpp"
+#include "arm.h"
+#include "ir.h"
+#include "robot.h"
+#include "motor.h"
 
 void lvl1(Robot rob)
 {

@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <Servo.h>
-#include "motor.cpp"
+#include "motor.h"
 // GOOD
 
 class Ir

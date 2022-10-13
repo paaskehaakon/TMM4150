@@ -1,7 +1,7 @@
-#include "motor.cpp"
-#include "ir.cpp"
-#include "arm.cpp"
-#include "ultrasonic.cpp"
+#include "motor.h"
+#include "ir.h"
+#include "arm.h"
+#include "ultrasonic.h"
 
 class Robot
 {
