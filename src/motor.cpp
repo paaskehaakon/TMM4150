@@ -1,50 +1,51 @@
 #include <Arduino.h>
-class Motor
+#include "motor.h"
+#include "ir.h"
+
+Motor::Motor()
 {
-public:
     // pins for motor
-    int analog_left_pin;
-    int analog_right_pin;
-    int digital_left_pin;
-    int digital_right_pin;
+    this->analog_left_pin = 1;
+    this->analog_right_pin = 2;
+    this->digital_left_pin = 3;
+    this->digital_right_pin = 4;
+    this->speed = 20;
 
-    // tunable parameters
-    int speed;
+    // attach motor
+    pinMode(analog_left_pin, OUTPUT);
+    pinMode(analog_right_pin, OUTPUT);
+    pinMode(digital_left_pin, OUTPUT);
+    pinMode(digital_right_pin, OUTPUT);
+};
 
-    Motor(int pin1, int pin2, int pin3, int pin4, int speed)
-    {
-        // pins for motor
-        this->analog_left_pin = pin1;
-        this->analog_right_pin = pin2;
-        this->digital_left_pin = pin3;
-        this->digital_right_pin = pin4;
-        this->speed = speed;
+void Motor::drive()
+{
+    digitalWrite(digital_left_pin, HIGH);
+    digitalWrite(digital_right_pin, HIGH);
 
-        // attach motor
-        pinMode(analog_left_pin, OUTPUT);
-        pinMode(analog_right_pin, OUTPUT);
-        pinMode(digital_left_pin, OUTPUT);
-        pinMode(digital_right_pin, OUTPUT);
-    };
+    analogWrite(analog_left_pin, speed);
+    analogWrite(analog_right_pin, speed);
+};
 
-    void drive()
-    {
-        digitalWrite(digital_left_pin, HIGH);
-        digitalWrite(digital_right_pin, HIGH);
+void Motor::turn_left()
+{
+    digitalWrite(digital_left_pin, HIGH);
+    digitalWrite(digital_right_pin, LOW);
 
-        analogWrite(analog_left_pin, speed);
-        analogWrite(analog_right_pin, speed);
-    };
+    analogWrite(analog_left_pin, speed);
+    analogWrite(analog_right_pin, speed);
+}
+void Motor::turn_right()
+{
+    digitalWrite(digital_left_pin, LOW);
+    digitalWrite(digital_right_pin, HIGH);
 
-    void turn_left()
-    {
-        digitalWrite(digital_left_pin, HIGH);
-        digitalWrite(digital_right_pin, LOW);
-
-        analogWrite(analog_left_pin, speed);
-        analogWrite(analog_right_pin, speed);
-    }
-    void turn_right()
+    analogWrite(analog_left_pin, speed);
+    analogWrite(analog_right_pin, speed);
+}
+void Motor::turn(String dir, int deg)
+{
+    if (dir == "left")
     {
         digitalWrite(digital_left_pin, LOW);
         digitalWrite(digital_right_pin, HIGH);
@@ -52,33 +53,22 @@ public:
         analogWrite(analog_left_pin, speed);
         analogWrite(analog_right_pin, speed);
     }
-    void turn(String dir, int deg)
+    else
     {
-        if (dir == "left")
-        {
-            digitalWrite(digital_left_pin, LOW);
-            digitalWrite(digital_right_pin, HIGH);
+        digitalWrite(digital_left_pin, HIGH);
+        digitalWrite(digital_right_pin, LOW);
 
-            analogWrite(analog_left_pin, speed);
-            analogWrite(analog_right_pin, speed);
-        }
-        else
-        {
-            digitalWrite(digital_left_pin, HIGH);
-            digitalWrite(digital_right_pin, LOW);
-
-            analogWrite(analog_left_pin, speed);
-            analogWrite(analog_right_pin, speed);
-        }
-        if (deg == 180)
-        {
-            delay(2000); // time it takes to spin 180 degrees
-        }
-        else
-        {
-            delay(1000);
-        }
-        analogWrite(analog_left_pin, 0);
-        analogWrite(analog_right_pin, 0);
+        analogWrite(analog_left_pin, speed);
+        analogWrite(analog_right_pin, speed);
     }
+    if (deg == 180)
+    {
+        delay(2000); // time it takes to spin 180 degrees
+    }
+    else
+    {
+        delay(1000);
+    }
+    analogWrite(analog_left_pin, 0);
+    analogWrite(analog_right_pin, 0);
 };

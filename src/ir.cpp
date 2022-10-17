@@ -1,39 +1,31 @@
 #include <Arduino.h>
 #include <Servo.h>
 #include "motor.h"
+#include "ir.h"
 // GOOD
 
-class Ir
+Ir::Ir()
 {
-public:
   // pins for ir sensor
-  int sensor_1_pin;
-  int sensor_2_pin;
-  int sensor_3_pin;
+  this->sensor_1_pin = 1;
+  this->sensor_2_pin = 2;
+  this->sensor_3_pin = 3;
 
-  Ir(int pin1, int pin2, int pin3)
+  pinMode(sensor_1_pin, INPUT);
+  pinMode(sensor_2_pin, INPUT);
+  pinMode(sensor_3_pin, INPUT);
+};
+
+int Ir::read_sensor(int pin)
+{
+  // reads if the ir sensor detects line
+  int status_sensor = digitalRead(pin);
+  if (status_sensor)
   {
-    // pins for ir sensor
-    this->sensor_1_pin = pin1;
-    this->sensor_2_pin = pin2;
-    this->sensor_3_pin = pin3;
-
-    pinMode(sensor_1_pin, INPUT);
-    pinMode(sensor_2_pin, INPUT);
-    pinMode(sensor_3_pin, INPUT);
+    return 1;
   }
-
-  int read_sensor(int pin)
+  else
   {
-    // reads if the ir sensor detects line
-    int status_sensor = digitalRead(pin);
-    if (status_sensor)
-    {
-      return 1;
-    }
-    else
-    {
-      return 0;
-    }
+    return 0;
   }
 };

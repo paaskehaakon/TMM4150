@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#pragma once
 
 class Ultrasonic
 {
@@ -11,7 +12,7 @@ public:
     // tunable parameters
     int max_distance;
 
-    Ultrasonic(int in, int out);
+    Ultrasonic();
 
     int read_distance();
 };

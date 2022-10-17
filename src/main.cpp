@@ -3,6 +3,7 @@
 #include "ir.h"
 #include "robot.h"
 #include "motor.h"
+#include "ultrasonic.h"
 
 void lvl1(Robot rob)
 {

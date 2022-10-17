@@ -2,6 +2,7 @@
 #include "ir.h"
 #include "arm.h"
 #include "ultrasonic.h"
+#pragma once
 
 class Robot
 {

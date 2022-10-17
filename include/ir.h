@@ -8,6 +8,6 @@ public:
     int sensor_2_pin;
     int sensor_3_pin;
 
-    Ir(int pin1, int pin2, int pin3);
+    Ir();
     int read_sensor(int pin);
 };
