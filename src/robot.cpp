@@ -3,6 +3,8 @@
 #include "arm.h"
 #include "ultrasonic.h"
 #include "robot.h"
+#include "serv.h"
+#include <Servo.h>
 
 Robot::Robot()
 {
@@ -11,6 +13,10 @@ Robot::Robot()
     this->arm = Arm();
     this->motor = Motor();
     this->ultrasonic = Ultrasonic();
+    this->servo1 = Servo();
+    this->servo2 = Servo();
+    servo1.attach(5);
+    servo2.attach(6);
 };
 
 void Robot::follow_line()
@@ -86,3 +92,21 @@ void Robot::drive_to_search()
 void Robot::search()
 {
 }
+/* void Robot::follow_servo()
+{
+    while (true)
+    {
+        if (ir.read_sensor(1) && !ir.read_sensor(2) && ir.read_sensor(3))
+        {
+            serv.drive();
+        }
+        if (!ir.read_sensor(1))
+        {
+            serv.turn_left();
+        }
+        if (!ir.read_sensor(3))
+        {
+            serv.turn_right();
+        }
+    }
+} */

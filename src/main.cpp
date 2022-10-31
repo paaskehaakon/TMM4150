@@ -4,6 +4,7 @@
 #include "robot.h"
 #include "motor.h"
 #include "ultrasonic.h"
+#include <Servo.h>
 
 void lvl1(Robot rob)
 {
@@ -36,22 +37,15 @@ void lvl4(Robot rob)
   rob.follow_line();
   rob.follow_line();
 }
+Robot rob;
+void setup(){
 
-void setup()
-{
-  Robot rob;
-  lvl1(rob);
-  lvl2(rob);
-  lvl3(rob);
-  lvl4(rob);
-
-  // victory spin
-  while (true)
-  {
-    rob.motor.turn_left();
-  }
+    // delay(5000);
+    // rob.arm.leave();
+    // rob.motor.test();
 };
 void loop()
 {
-  delay(1000);
+  rob.servo1.write(45);
+  rob.servo2.write(45);
 };

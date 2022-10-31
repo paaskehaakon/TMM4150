@@ -4,18 +4,24 @@
 
 Motor::Motor()
 {
-    // pins for motor
-    this->analog_left_pin = 1;
-    this->analog_right_pin = 2;
-    this->digital_left_pin = 3;
-    this->digital_right_pin = 4;
+    // pins for motor A
+    this->digital_left_pin = 12;
+    this->break_left_pin = 9;
+    this->analog_left_pin = 3;
+
+    // pins for motor B
+    this->digital_right_pin = 13;
+    this->break_right_pin = 8;
+    this->analog_right_pin = 11;
+
     this->speed = 20;
 
-    // attach motor
-    pinMode(analog_left_pin, OUTPUT);
-    pinMode(analog_right_pin, OUTPUT);
+    // attach motor B
     pinMode(digital_left_pin, OUTPUT);
+    pinMode(break_left_pin, OUTPUT);
+    // attach motor B
     pinMode(digital_right_pin, OUTPUT);
+    pinMode(break_right_pin, OUTPUT);
 };
 
 void Motor::drive()
@@ -72,3 +78,17 @@ void Motor::turn(String dir, int deg)
     analogWrite(analog_left_pin, 0);
     analogWrite(analog_right_pin, 0);
 };
+
+void Motor::test()
+{
+
+    // Motor A forward @ full speed
+    digitalWrite(digital_left_pin, HIGH); // Establishes backward direction of Channel A
+    digitalWrite(break_left_pin, LOW);    // Disengage the Brake for Channel A
+    analogWrite(analog_left_pin, 255);    // Spins the motor on Channel A at half speed
+
+    // Motor B forward @ full speed
+    digitalWrite(digital_right_pin, HIGH); // Establishes forward direction of Channel B
+    digitalWrite(break_right_pin, LOW);    // Disengage the Brake for Channel B
+    analogWrite(analog_right_pin, 255);    // Spins the motor on Channel B at full speed
+}

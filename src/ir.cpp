@@ -7,9 +7,9 @@
 Ir::Ir()
 {
   // pins for ir sensor
-  this->sensor_1_pin = 1;
-  this->sensor_2_pin = 2;
-  this->sensor_3_pin = 3;
+  this->sensor_1_pin = A0;
+  this->sensor_2_pin = A1;
+  this->sensor_3_pin = A2;
 
   pinMode(sensor_1_pin, INPUT);
   pinMode(sensor_2_pin, INPUT);
